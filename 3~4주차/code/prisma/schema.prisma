@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  phoneNumber   String
+  password      String
+  posts         Posts[]
+  comments      Comments[]
+  scraps        Scraps[]
+}
+
+model Posts {
+  id          String     @id @default(uuid())
+  writerId    String
+  likes       Int
+  body        String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  author      Users      @relation(fields: [writerId], references: [id])
+  comments    Comments[]
+  scraps      Scraps[]
+}
+
+model Comments {
+  commentId      String   @id @default(uuid())
+  commentWriterId String
+  commentPostId   String
+  createdAt      DateTime  @default(now())
+  content        String
+  post           Posts     @relation(fields: [commentPostId], references: [id])
+  writer         Users     @relation(fields: [commentWriterId], references: [id])
+}
+
+model Scraps {
+  id            String   @id @default(uuid())
+  scrapperId    String
+  scrapPostId   String
+  createdAt     DateTime @default(now())
+  scrapper      Users    @relation(fields: [scrapperId], references: [id])
+  scrapPost     Posts    @relation(fields: [scrapPostId], references: [id])
+
+  @@unique([scrapperId, scrapPostId]) // 유저가 동일 게시물을 여러 번 스크랩하지 않도록
+}
+
+//Ref: posts.writer > users.id // many-to-one
+//Ref: users.id < comments.commentWriter
+//Ref: posts.id < comments.commentPost_id
+//Ref: posts.id < scraps.scrapPost
+//Ref: users.id < scraps.scrapperId

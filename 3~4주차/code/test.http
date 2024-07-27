@@ -1,0 +1,82 @@
+//전체 글 목록 조회
+GET http://localhost:3000/posts
+
+//특정 글에 해당하는 댓글 조회
+###
+GET http://localhost:3000/comments?commentPost_id=d2ff3048-83bc-425a-8ad3-d6d9af1c7c6d
+
+
+### 회원가입 요청
+POST http://localhost:3000/signup
+Content-Type: application/json
+
+{
+    "name": "박포비",
+    "phoneNumber": "01098765432",
+    "email": "phobithelove@gmail.com",
+    "password": "carrotbi1010@"
+}
+
+
+### 로그인 요청
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "honggd@example.com",
+    "password": "imhonggildong15@"
+}
+
+
+### 게시물 목록 조회 요청(전체 게시물)
+GET http://localhost:3000/posts?offset=0&limit=10&order=newest
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYWFmZGVkZi1mZjkwLTQzOGYtOGUxYS03M2UxZTQ5NDI0YWMiLCJpYXQiOjE3MjIwNDcyMDMsImV4cCI6MTcyMjA1MDgwM30.tkm1AyZR4s8zaRobrE-h8_4CBRuWcHRzMHTtexEWWt8
+
+
+### 게시물 올리기
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYWFmZGVkZi1mZjkwLTQzOGYtOGUxYS03M2UxZTQ5NDI0YWMiLCJpYXQiOjE3MjIwNDcyMDMsImV4cCI6MTcyMjA1MDgwM30.tkm1AyZR4s8zaRobrE-h8_4CBRuWcHRzMHTtexEWWt8
+
+{
+    "body": "포비가 짱이지."
+}
+
+
+### 댓글 작성
+POST http://localhost:3000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiOGYxMWU3Ni0wYTllLTRiM2YtYmNjZi04ZDliNGZiZjMzMWUiLCJpYXQiOjE3MjIwNDkxMjEsImV4cCI6MTcyMjA1MjcyMX0.Z-hwxiSqaHvPmcc9bKo-bahoY7s7UiKF1Niy2Vnr2RQ
+
+{
+    "content": "왜저래-,- 포비폼 미쳤다 ㅋㅋㅋ",
+    "commentPostId": "1d4725b5-c074-4388-a2d8-f49a99de7c49"
+}
+
+
+### 특정 사용자의 게시물 검색
+GET http://localhost:3000/posts/email/kimyh@example.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiOGYxMWU3Ni0wYTllLTRiM2YtYmNjZi04ZDliNGZiZjMzMWUiLCJpYXQiOjE3MjIwNTQwNjIsImV4cCI6MTcyMjA1NzY2Mn0.SeezdHPwt7pdH-Ao3k8jgn_RDqcqvBE7d7pP-189GjM
+
+### 스크랩 추가
+POST http://localhost:3000/scraps
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiOGYxMWU3Ni0wYTllLTRiM2YtYmNjZi04ZDliNGZiZjMzMWUiLCJpYXQiOjE3MjIwNTQwNjIsImV4cCI6MTcyMjA1NzY2Mn0.SeezdHPwt7pdH-Ao3k8jgn_RDqcqvBE7d7pP-189GjM
+
+{
+    "scrapPostId": "1d4725b5-c074-4388-a2d8-f49a99de7c49"
+}
+
+### 스크랩 삭제
+DELETE http://localhost:3000/scraps
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiOGYxMWU3Ni0wYTllLTRiM2YtYmNjZi04ZDliNGZiZjMzMWUiLCJpYXQiOjE3MjIwNTQ3NzcsImV4cCI6MTcyMjA1ODM3N30.dVPwTZkEGk2-iRuqDs4USRWIl9dDKLqzcX84RR0seUs
+
+{
+    "scrapPostId": "1d4725b5-c074-4388-a2d8-f49a99de7c49"
+}
+
+### 스크랩 조회
+GET http://localhost:3000/scraps
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiOGYxMWU3Ni0wYTllLTRiM2YtYmNjZi04ZDliNGZiZjMzMWUiLCJpYXQiOjE3MjIwNTQ3NzcsImV4cCI6MTcyMjA1ODM3N30.dVPwTZkEGk2-iRuqDs4USRWIl9dDKLqzcX84RR0seUs
