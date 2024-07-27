@@ -18,7 +18,7 @@
 
 express를 이용한 간단한 게시판을 만듦. 각 요청 테스트는 curl을 이용하여 진행함.
 
-![필요한 기능과 구현방법](./필요기능및구현방법.png)
+![필요한 기능과 구현방법](./2주차/필요기능및구현방법.png)
 
 #### 새로 알게된 점
 - express에서 원래의 정보를 변경할 때에 PUT 요청을 사용한다는 것을 새롭게 알게됨 (인수 : URL 패턴, 콜백 함수)
@@ -37,10 +37,10 @@ app.use((req, res, next) => {
 #### 막혔던 부분
 - curl 사용 익숙하지 않음 문제
     - 코드(서버)를 먼저 실행 후 curl 명령을 실행해야함. 그렇지 않으면 서버 연결 오류 문제 발생
-    ![오류 화면](./curl_명령오류.png)
+    ![오류 화면](./2주차/curl_명령오류.png)
 
     - vsCode에서 curl만 입력하면 오류가 뜸. 'curl.exe'로 실행해 주어야 함.
-    ![오류 화면](./curl_실행시오류.png)
+    ![오류 화면](./2주차/curl_실행시오류.png)
 
 **********
 
@@ -50,21 +50,21 @@ app.use((req, res, next) => {
 mysql과 prisma를 사용하여 데이터베이스를 사용하는 게시판 만들기를 수행함
 
 - ERD 모델
-  ![3주차ERD모델](./3주차_erd모델.png)
+  ![3주차ERD모델](./3주차/3주차_erd모델.png)
 
 
 #### database
 -  Users
-![Users](./users캡처.png)
+![Users](./3주차/users캡처.png)
 
 -  Posts
-![Posts](./posts캡처.png)
+![Posts](./3주차/posts캡처.png)
 
 -  Comments
-![Comments](./comments캡처.png)
+![Comments](./3주차/comments캡처.png)
 
 - Scraps
-![Scraps](./scraps캡처.png)
+![Scraps](./3주차/scraps캡처.png)
 
 #### 새로 알게된 점 
 -  `"type": "module"` 속성이 있으면 Node.js는 해당 프로젝트 파일을 ES 모듈로 처리함. 이에 따라서 require문도 사용 불가
@@ -74,10 +74,10 @@ mysql과 prisma를 사용하여 데이터베이스를 사용하는 게시판 만
 
 -  의도되지 않은 프로퍼티 사용됨 에러
 스키마에서 Users 로 정의했기 때문에 users로 받아야 undefined 에러가 발생하지 않는다. user로 되어있어서 계속 에러가 뜸. 프리즈마 모델 이름은 보통 단수를 사용한다고 한다. 알아두자.
-![오류 화면](./의도되지않은프로퍼티에러.png)
+![오류 화면](./3주차/의도되지않은프로퍼티에러.png)
 
 -  http 요청 과정에서 header관련 에러 발생
-![오류 화면](./http요청에러.png)
+![오류 화면](./3주차/http요청에러.png)
 http 요청 과정에서 헤더와 본문 사이에 빈줄이 한 줄 존재해야함
 
 
